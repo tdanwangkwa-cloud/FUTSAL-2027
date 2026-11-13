@@ -1203,7 +1203,7 @@
 
             if (m.userScore) {
               score = m.userScore;
-              finished = (m.userState === "finished");
+              finished = (m.userState === "finished" || m.userState === "live");
             }
 
             if (score && finished) {
@@ -1340,6 +1340,24 @@
       render();
     }
 
+    function resetAllRealResults() {
+      if (confirm("คุณต้องการล้างผลการแข่งขันทั้งหมดที่คุณเคยบันทึกไว้ใช่หรือไม่?")) {
+        OFFICIAL_MATCHES.forEach(m => {
+          m.userScore = null;
+          m.userState = "upcoming";
+          const orig = INITIAL_OFFICIAL_MATCHES.find(o => o.item === m.item);
+          if (orig) {
+            m.home = orig.home;
+            m.away = orig.away;
+          }
+        });
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(OFFICIAL_MATCHES));
+        } catch (e) {}
+        render();
+      }
+    }
+
     function saveScorersToStorage() {
       try {
         localStorage.setItem(SCORERS_STORAGE_KEY, JSON.stringify(topScorersList));
@@ -1353,14 +1371,25 @@
         alert("กรุณากรอกชื่อผู้ทำประตู / Please enter player name");
         return;
       }
-      const newScorer = {
-        id: Date.now(),
-        player: player.trim(),
-        club: club,
-        category: category,
-        goals: parseInt(goals) || 0
-      };
-      topScorersList.push(newScorer);
+      const newGoals = parseInt(goals) || 0;
+      const cleanPlayer = player.trim();
+      
+      // Check if player already exists in this category (case-insensitive name check)
+      const existing = topScorersList.find(s => s.player.toLowerCase() === cleanPlayer.toLowerCase() && s.category === category);
+      
+      if (existing) {
+        existing.goals = newGoals;
+        existing.club = club; // update team as well
+      } else {
+        const newScorer = {
+          id: Date.now(),
+          player: cleanPlayer,
+          club: club,
+          category: category,
+          goals: newGoals
+        };
+        topScorersList.push(newScorer);
+      }
       saveScorersToStorage();
       render();
     }
