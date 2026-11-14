@@ -8,13 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cordia+New:wght@400;700&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Firebase SDK from CDN (Compat Version for Simple Realtime Integration) -->
-  <script src="about:invalid#zPythonSafez"></script>
-  <script src="about:invalid#zPythonSafez"></script>
+  <!-- Firebase SDK (Compat Version สำหรับเชื่อมต่อ Realtime Database ได้โดยตรงผ่าน CDN) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
   <style>
     :root {
-      /* Brand Palette from LPHPP Futsal 2027_Rev.02.pdf */
+      /* Brand Palette อ้างอิงจากไฟล์ LPHPP Futsal 2027 */
       --brand-red: #FF0000;
       --brand-navy: #203764;
       --brand-yellow: #FFFF00;
@@ -81,7 +81,7 @@
       background: var(--bg);
       color: var(--ink);
       line-height: 1.5;
-      font-size: 22px;
+      font-size: 22px; /* ขยายขนาดตัวหนังสือขึ้น 50% */
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
@@ -685,8 +685,7 @@
     }
 
     .rank-num {
-      display: inline-flex;
-      align-items: center;
+      display: inline-flex;\n      align-items: center;
       justify-content: center;
       width: 32px;
       height: 32px;
@@ -875,7 +874,7 @@
     .firebase-settings-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 4px solid #f59e0b; /* yellow warning border */
+      border-left: 4px solid #f59e0b;
       border-radius: var(--radius-md);
       padding: var(--space-4);
       margin-top: var(--space-6);
@@ -908,7 +907,7 @@
       color: #22c55e;
     }
   </style>
-<style data-link-removed-style>a[data-link-removed],a[href*="zPythonSafez"]:not([onclick]){pointer-events:none!important;cursor:default!important;opacity:.6}</style></head>
+</head>
 <body>
   <div id="root"></div>
 
@@ -928,7 +927,7 @@
       console.warn("localStorage not accessible", e);
     }
 
-    // Complete 76 matches from LPHPP Futsal 2027_Rev.02.pdf (Completely Clean)
+    // ข้อมูลตารางการแข่งขันครบทั้ง 76 คู่จากไฟล์ LPHPP Futsal 2027_Rev.02.pdf
     const INITIAL_OFFICIAL_MATCHES = [
       // Week 1 - Sunday 29 Nov 26
       { item: 1, code: "A1", group: "A", stage: "group", week: "Week 1", day: "Sunday", date: "29 Nov 26", time: "17.30 - 18.20", home: "สังเคราะห์แสง (SA2)", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
@@ -1030,7 +1029,7 @@
       { item: 65, code: "หญิง5", group: "หญิง", stage: "group", week: "Week 17", day: "Sunday", date: "28 Mar 27", time: "17.30 - 18.20", home: "Lady Process FC", away: "ธิดาสนาม", court: "สนามกีฬา LPHPP" },
       { item: 66, code: "หญิง6", group: "หญิง", stage: "group", week: "Week 17", day: "Sunday", date: "28 Mar 27", time: "18.30 - 19.20", home: "singha sao fc", away: "ล้างหน้าไก่ Lady (SA2)", court: "สนามกีฬา LPHPP" },
 
-      // Quarter-finals (รอบ 8 ทีม / รอบก่อนรองชนะเลิศ ชาย) - Sunday 04 Apr 27
+      // Quarter-finals (รอบ 8 ทีม ชาย) - Sunday 04 Apr 27
       { item: 67, code: "QF-A", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "04 Apr 27", time: "17.30 - 18.20", home: "รอผลจับสลาก (QF-A1)", away: "รอผลจับสลาก (QF-A2)", court: "สนามกีฬา LPHPP" },
       { item: 68, code: "QF-B", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "04 Apr 27", time: "18.30 - 19.20", home: "รอผลจับสลาก (QF-B1)", away: "รอผลจับสลาก (QF-B2)", court: "สนามกีฬา LPHPP" },
       { item: 69, code: "QF-C", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "04 Apr 27", time: "20.30 - 21.20", home: "รอผลจับสลาก (QF-C1)", away: "รอผลจับสลาก (QF-C2)", court: "สนามกีฬา LPHPP" },
@@ -1049,6 +1048,7 @@
 
     const OFFICIAL_MATCHES = storedMatches || INITIAL_OFFICIAL_MATCHES;
 
+    // การจัดเรียงลำดับทีมเริ่มต้นอ้างอิงตรงจากเอกสารทางการ
     const GROUPS_CONFIG = [
       { key: "A", titleTh: "กลุ่ม A (ชาย)", titleEn: "Group A (Men)", qualifyCount: 2, teams: ["สังเคราะห์แสง (SA2)", "เด็กจเร", "Camp Boss FC", "Powerhouse", "สันเขื่อน FC", "นกหัวม่วงมาเลย์"] },
       { key: "B", titleTh: "กลุ่ม B (ชาย)", titleEn: "Group B (Men)", qualifyCount: 2, teams: ["RT & VCB FC", "RT PPSC United", "All Star E&M", "ANDRITZ", "Fuel 888"] },
@@ -1058,7 +1058,7 @@
       { key: "หญิง", titleTh: "สายหญิง (Women)", titleEn: "Women Division", qualifyCount: 2, teams: ["singha sao fc", "Lady Process FC", "ธิดาสนาม", "ล้างหน้าไก่ Lady (SA2)"] }
     ];
 
-    // Load Top Scorers from local storage
+    // โหลดรายชื่อผู้ทำประตู (เริ่มต้นเป็นค่าว่าง)
     const INITIAL_SCORERS = [];
     let storedScorers = null;
     try {
@@ -1072,26 +1072,25 @@
 
     let topScorersList = storedScorers || INITIAL_SCORERS;
 
-    // Firebase Database Reference Object
+    // ตัวแปรเชื่อมต่อ Firebase Realtime Database
     let firebaseDB = null;
     let firebaseStatus = "disconnected"; // disconnected | connecting | connected | error
 
-    // Initialize Firebase if config exists in localstorage
-      function initFirebaseSDK() {
+    function initFirebaseSDK() {
       if (typeof firebase === "undefined") {
         console.warn("Firebase SDK not loaded yet.");
         return;
       }
-
-      // นำข้อมูลของคุณมากรอกตรงนี้แทนของเดิม
-      const config = {
-        apiKey: "AIzaSyD6YjZ7dwFqfTy_OFI-6P19MyD2VtBHa-E",
-        databaseURL: "https://lphpp-futsal-2027-default-rtdb.firebaseio.com/",
-        projectId: "lphpp-futsal-2027"
-      };
+      const storedConfig = localStorage.getItem(FIREBASE_CONFIG_KEY);
+      if (!storedConfig) {
+        firebaseStatus = "disconnected";
+        return;
+      }
 
       try {
         firebaseStatus = "connecting";
+        const config = JSON.parse(storedConfig);
+        
         if (firebase.apps.length === 0) {
           firebase.initializeApp(config);
         }
@@ -1099,7 +1098,7 @@
         firebaseStatus = "connected";
         console.log("Firebase Realtime Database connected successfully.");
 
-        // Subscribe to Realtime Updates
+        // ดึงและอัปเดตผลการแข่งขันจากคลาวด์แบบ Realtime
         firebaseDB.ref("matches").on("value", snapshot => {
           const cloudMatches = snapshot.val();
           if (cloudMatches && Array.isArray(cloudMatches) && cloudMatches.length === 76) {
@@ -1110,6 +1109,7 @@
           }
         });
 
+        // ดึงและอัปเดตรายชื่อดาวซัลโวจากคลาวด์แบบ Realtime
         firebaseDB.ref("scorers").on("value", snapshot => {
           const cloudScorers = snapshot.val();
           if (cloudScorers && Array.isArray(cloudScorers)) {
@@ -1126,15 +1126,14 @@
       }
     }
 
-
-    // Try initializing on startup
+    // เริ่มต้นเชื่อมต่อ Firebase อัตโนมัติ (หากเคยบันทึกค่าไว้)
     setTimeout(initFirebaseSDK, 500);
 
     const state = {
       theme: "dark",
       lang: "th",
-      activeTab: "matches", // matches | standings | scorers
-      stageFilter: "all", // all | group | qf | sf | final
+      activeTab: "matches",
+      stageFilter: "all",
       groupFilter: "all",
       dateFilter: "all",
       courtFilter: "all",
@@ -1142,13 +1141,10 @@
       adminMode: false,
       adminPinInput: "",
       selectedMatch: null,
-      scorerCategoryFilter: "men",
-
-      // Firebase Config fields in admin editor
-      fbApiKey: "",
-      fbDatabaseUrl: "",
-      fbProjectId: ""
+      scorerCategoryFilter: "men"
     };
+
+    const ADMIN_PASSCODE = "LPHPP2027"; // รหัสผ่านแอดมิน
 
     const I18N = {
       th: {
@@ -1265,9 +1261,9 @@
         saveBtn: "Save Match Result",
         resetMatchesBtn: "Reset All Real Results",
 
-        scorerTabMen: "Men's Open",
+        scorerTabMen: "Men\'s Open",
         scorerTabSenior: "Seniors",
-        scorerTabWomen: "Women's",
+        scorerTabWomen: "Women\'s",
         scorerAddTitle: "Add/Edit Top Scorer Record",
         scorerInputName: "Player Name",
         scorerInputTeam: "Select Team",
@@ -1277,6 +1273,7 @@
       }
     };
 
+    // คำนวณตารางคะแนนแบบเรียลไทม์ (เมื่อสถานะเป็น Live หรือ Finished)
     function computeStandings() {
       const result = {};
       GROUPS_CONFIG.forEach(cfg => {
@@ -1325,6 +1322,7 @@
           }
         });
 
+        // จัดเรียง: แต้ม -> ลูกได้ -> ลูกเสีย -> ลำดับตั้งต้นจากไฟล์
         const sorted = Object.values(stats).sort((x, y) => {
           if (y.pts !== x.pts) return y.pts - x.pts;
           if (y.gf !== x.gf) return y.gf - x.gf;
@@ -1376,7 +1374,6 @@
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(OFFICIAL_MATCHES));
           
-          // Write to cloud Firebase
           if (firebaseDB) {
             firebaseDB.ref("matches").set(OFFICIAL_MATCHES);
           }
@@ -1389,7 +1386,7 @@
     }
 
     function resetAllRealResults() {
-      if (confirm("คุณต้องการล้างผลการแข่งขันทั้งหมดและสถานะเป็น 'ยังไม่เริ่ม' ใช่หรือไม่?")) {
+      if (confirm("คุณต้องการล้างผลการแข่งขันทั้งหมดและปรับสถานะเป็น 'ยังไม่เริ่ม' ใช่หรือไม่?")) {
         OFFICIAL_MATCHES.forEach(m => {
           m.userScore = null;
           m.userState = "upcoming";
@@ -1455,7 +1452,6 @@
       }
     }
 
-    // Connect custom Firebase configs entered by Admin
     function connectFirebaseConfig(apiKey, dbUrl, projId) {
       if (!apiKey || !dbUrl || !projId) {
         alert("กรุณากรอกข้อมูล Firebase Config ให้ครบถ้วน / Please fill out all Firebase config fields");
@@ -1485,6 +1481,82 @@
         alert("ยกเลิกการเชื่อมต่อเรียบร้อย / Disconnected successfully.");
         render();
       } catch (e) {}
+    }
+
+    // Lucide-style SVG Icons
+    const Icons = {
+      trophy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
+      calendar: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>`,
+      table: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>`,
+      flame: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`,
+      search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>`,
+      sun: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`,
+      moon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+      globe: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`,
+      mapPin: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+      clock: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+      sparkles: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>`,
+      settings: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`
+    };
+
+    function toggleTheme() {
+      state.theme = state.theme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", state.theme);
+      render();
+    }
+
+    function toggleLang() {
+      state.lang = state.lang === "th" ? "en" : "th";
+      render();
+    }
+
+    function setTab(tab) {
+      state.activeTab = tab;
+      render();
+    }
+
+    function setStage(stage) {
+      state.stageFilter = stage;
+      render();
+    }
+
+    function setScorerCategory(cat) {
+      state.scorerCategoryFilter = cat;
+      render();
+    }
+
+    function resetFilters() {
+      state.stageFilter = "all";
+      state.groupFilter = "all";
+      state.dateFilter = "all";
+      state.courtFilter = "all";
+      state.searchQuery = "";
+      render();
+    }
+
+    function openMatchModal(itemNum) {
+      state.selectedMatch = OFFICIAL_MATCHES.find(m => m.item === itemNum) || null;
+      render();
+    }
+
+    function closeMatchModal() {
+      state.selectedMatch = null;
+      render();
+    }
+
+    function handleAdminPinSubmit() {
+      if (state.adminPinInput === ADMIN_PASSCODE) {
+        state.adminMode = true;
+        state.adminPinInput = "";
+      } else {
+        alert("รหัสผ่านไม่ถูกต้อง / Incorrect Passcode");
+      }
+      render();
+    }
+
+    function handleAdminLogout() {
+      state.adminMode = false;
+      render();
     }
 
     function renderMatchesPanel(t) {
@@ -1896,21 +1968,6 @@
       `;
     }
 
-    function handleAdminPinSubmit() {
-      if (state.adminPinInput === ADMIN_PASSCODE) {
-        state.adminMode = true;
-        state.adminPinInput = "";
-      } else {
-        alert("รหัสผ่านไม่ถูกต้อง / Incorrect Passcode");
-      }
-      render();
-    }
-
-    function handleAdminLogout() {
-      state.adminMode = false;
-      render();
-    }
-
     function render() {
       const t = I18N[state.lang];
       const uniqueDates = getUniqueDates();
@@ -1920,7 +1977,6 @@
       else if (state.activeTab === "standings") activeContent = renderStandingsPanel(t);
       else activeContent = renderScorersPanel(t);
 
-      // Current Firebase Status Badge string
       let fbBadgeHtml = "";
       if (firebaseStatus === "connected") {
         fbBadgeHtml = `<span class="firebase-status-badge connected">● Cloud Realtime: Sync Active</span>`;
@@ -2062,7 +2118,7 @@
 
           ${activeContent}
 
-          <!-- Firebase Config Interface (Admin Only) -->
+          <!-- แผงตั้งค่า Firebase สำหรับผู้ดูแลระบบ -->
           ${state.adminMode ? `
             <div class="firebase-settings-card">
               <h3>📡 เชื่อมต่อฐานข้อมูลระบบเรียลไทม์ (Cloud Firebase Connection)</h3>
@@ -2081,7 +2137,7 @@
                   </div>
                   <div class="filter-field">
                     <label>Database URL</label>
-                    <input type="text" id="fb-dburl" class="filter-input" placeholder="about:invalid#zPythonSafez" value="${parsedDbUrl}" required />
+                    <input type="text" id="fb-dburl" class="filter-input" placeholder="https://your-app-default-rtdb.firebaseio.com/" value="${parsedDbUrl}" required />
                   </div>
                   <div class="filter-field">
                     <label>Project ID</label>
