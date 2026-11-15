@@ -938,8 +938,7 @@
     } catch (e) {
       console.warn("localStorage not accessible", e);
     }
-
-    // ข้อมูลตารางการแข่งขันครบทั้ง 76 คู่จากไฟล์ LPHPP Futsal 2027_Rev.02.pdf
+    // Complete 76 matches from LPHPP Futsal 2027_Rev.04.pdf (Completely Clean)
     const INITIAL_OFFICIAL_MATCHES = [
       // Week 1 - Sunday 29 Nov 26
       { item: 1, code: "A1", group: "A", stage: "group", week: "Week 1", day: "Sunday", date: "29 Nov 26", time: "17.30 - 18.20", home: "สังเคราะห์แสง (SA2)", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
@@ -953,23 +952,23 @@
       { item: 7, code: "อาวุโส2", group: "อาวุโส", stage: "group", week: "Week 2", day: "Sunday", date: "06 Dec 26", time: "19.30 - 20.20", home: "Senior Process", away: "โก๋แก่", court: "สนามกีฬา LPHPP" },
       { item: 8, code: "A3", group: "A", stage: "group", week: "Week 2", day: "Sunday", date: "06 Dec 26", time: "20.30 - 21.20", home: "Powerhouse", away: "สันเขื่อน FC", court: "สนามกีฬา LPHPP" },
 
-      // Week 3 - Sunday 13 Dec 26
-      { item: 9, code: "B2", group: "B", stage: "group", week: "Week 3", day: "Sunday", date: "13 Dec 26", time: "17.30 - 18.20", home: "All Star E&M", away: "ANDRITZ", court: "สนามกีฬา LPHPP" },
-      { item: 10, code: "C2", group: "C", stage: "group", week: "Week 3", day: "Sunday", date: "13 Dec 26", time: "18.30 - 19.20", home: "ANDRITZ family", away: "ล้างหน้าไก่ Junior", court: "สนามกีฬา LPHPP" },
+      // Week 3 - Sunday 13 Dec 26 (Rev.04 Swap Items 9 and 10)
+      { item: 9, code: "C2", group: "C", stage: "group", week: "Week 3", day: "Sunday", date: "13 Dec 26", time: "17.30 - 18.20", home: "ANDRITZ family", away: "ล้างหน้าไก่ Junior", court: "สนามกีฬา LPHPP" },
+      { item: 10, code: "B2", group: "B", stage: "group", week: "Week 3", day: "Sunday", date: "13 Dec 26", time: "18.30 - 19.20", home: "All Star E&M", away: "ANDRITZ", court: "สนามกีฬา LPHPP" },
       { item: 11, code: "อาวุโส3", group: "อาวุโส", stage: "group", week: "Week 3", day: "Sunday", date: "13 Dec 26", time: "19.30 - 20.20", home: "SOLID TEAM", away: "ล้างหน้าไก่ Senior", court: "สนามกีฬา LPHPP" },
       { item: 12, code: "D2", group: "D", stage: "group", week: "Week 3", day: "Sunday", date: "13 Dec 26", time: "20.30 - 21.20", home: "เสือหมอบ", away: "Inspector", court: "สนามกีฬา LPHPP" },
 
-      // Week 4 - Sunday 20 Dec 26
-      { item: 13, code: "A4", group: "A", stage: "group", week: "Week 4", day: "Sunday", date: "20 Dec 26", time: "17.30 - 18.20", home: "สังเคราะห์แสง (SA2)", away: "Camp Boss FC", court: "สนามกีฬา LPHPP" },
-      { item: 14, code: "A5", group: "A", stage: "group", week: "Week 4", day: "Sunday", date: "20 Dec 26", time: "18.30 - 19.20", home: "เด็กจเร", away: "Powerhouse", court: "สนามกีฬา LPHPP" },
+      // Week 4 - Sunday 20 Dec 26 (Rev.04 Swapped Items 13, 14, 16)
+      { item: 13, code: "A5", group: "A", stage: "group", week: "Week 4", day: "Sunday", date: "20 Dec 26", time: "17.30 - 18.20", home: "เด็กจเร", away: "Powerhouse", court: "สนามกีฬา LPHPP" },
+      { item: 14, code: "B3", group: "B", stage: "group", week: "Week 4", day: "Sunday", date: "20 Dec 26", time: "18.30 - 19.20", home: "RT & VCB FC", away: "Fuel 888", court: "สนามกีฬา LPHPP" },
       { item: 15, code: "อาวุโส4", group: "อาวุโส", stage: "group", week: "Week 4", day: "Sunday", date: "20 Dec 26", time: "19.30 - 20.20", home: "SIMPLE MAN UNITED", away: "โก๋แก่", court: "สนามกีฬา LPHPP" },
-      { item: 16, code: "B3", group: "B", stage: "group", week: "Week 4", day: "Sunday", date: "20 Dec 26", time: "20.30 - 21.20", home: "RT & VCB FC", away: "Fuel 888", court: "สนามกีฬา LPHPP" },
+      { item: 16, code: "A4", group: "A", stage: "group", week: "Week 4", day: "Sunday", date: "20 Dec 26", time: "20.30 - 21.20", home: "สังเคราะห์แสง (SA2)", away: "Camp Boss FC", court: "สนามกีฬา LPHPP" },
 
-      // Week 5 - Sunday 10 Jan 27
-      { item: 17, code: "C3", group: "C", stage: "group", week: "Week 5", day: "Sunday", date: "10 Jan 27", time: "17.30 - 18.20", home: "บักหล้าครับ", away: "Process X Friend", court: "สนามกีฬา LPHPP" },
-      { item: 18, code: "D3", group: "D", stage: "group", week: "Week 5", day: "Sunday", date: "10 Jan 27", time: "18.30 - 19.20", home: "QC & Lab", away: "Engineering FC", court: "สนามกีฬา LPHPP" },
+      // Week 5 - Sunday 10 Jan 27 (Rev.04 Swapped Items 17, 18, 20)
+      { item: 17, code: "D3", group: "D", stage: "group", week: "Week 5", day: "Sunday", date: "10 Jan 27", time: "17.30 - 18.20", home: "QC & Lab", away: "Engineering FC", court: "สนามกีฬา LPHPP" },
+      { item: 18, code: "A6", group: "A", stage: "group", week: "Week 5", day: "Sunday", date: "10 Jan 27", time: "18.30 - 19.20", home: "สันเขื่อน FC", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
       { item: 19, code: "อาวุโส5", group: "อาวุโส", stage: "group", week: "Week 5", day: "Sunday", date: "10 Jan 27", time: "19.30 - 20.20", home: "VCB อาวุโสโอเค", away: "ล้างหน้าไก่ Senior", court: "สนามกีฬา LPHPP" },
-      { item: 20, code: "A6", group: "A", stage: "group", week: "Week 5", day: "Sunday", date: "10 Jan 27", time: "20.30 - 21.20", home: "สันเขื่อน FC", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
+      { item: 20, code: "C3", group: "C", stage: "group", week: "Week 5", day: "Sunday", date: "10 Jan 27", time: "20.30 - 21.20", home: "บักหล้าครับ", away: "Process X Friend", court: "สนามกีฬา LPHPP" },
 
       // Week 6 - Sunday 17 Jan 27
       { item: 21, code: "B4", group: "B", stage: "group", week: "Week 6", day: "Sunday", date: "17 Jan 27", time: "17.30 - 18.20", home: "RT PPSC United", away: "ANDRITZ", court: "สนามกีฬา LPHPP" },
@@ -977,47 +976,47 @@
       { item: 23, code: "อาวุโส6", group: "อาวุโส", stage: "group", week: "Week 6", day: "Sunday", date: "17 Jan 27", time: "19.30 - 20.20", home: "Senior Process", away: "SOLID TEAM", court: "สนามกีฬา LPHPP" },
       { item: 24, code: "D4", group: "D", stage: "group", week: "Week 6", day: "Sunday", date: "17 Jan 27", time: "20.30 - 21.20", home: "Inspector", away: "SEUA TUNG FC", court: "สนามกีฬา LPHPP" },
 
-      // Week 7 - Sunday 24 Jan 27
-      { item: 25, code: "A7", group: "A", stage: "group", week: "Week 7", day: "Sunday", date: "24 Jan 27", time: "17.30 - 18.20", home: "สังเคราะห์แสง (SA2)", away: "Powerhouse", court: "สนามกีฬา LPHPP" },
-      { item: 26, code: "B5", group: "B", stage: "group", week: "Week 7", day: "Sunday", date: "24 Jan 27", time: "18.30 - 19.20", home: "All Star E&M", away: "Fuel 888", court: "สนามกีฬา LPHPP" },
+      // Week 7 - Sunday 24 Jan 27 (Rev.04 Swapped Items 25, 26, 28)
+      { item: 25, code: "B5", group: "B", stage: "group", week: "Week 7", day: "Sunday", date: "24 Jan 27", time: "17.30 - 18.20", home: "All Star E&M", away: "Fuel 888", court: "สนามกีฬา LPHPP" },
+      { item: 26, code: "C5", group: "C", stage: "group", week: "Week 7", day: "Sunday", date: "24 Jan 27", time: "18.30 - 19.20", home: "ANDRITZ family", away: "Process X Friend", court: "สนามกีฬา LPHPP" },
       { item: 27, code: "อาวุโส7", group: "อาวุโส", stage: "group", week: "Week 7", day: "Sunday", date: "24 Jan 27", time: "19.30 - 20.20", home: "SIMPLE MAN UNITED", away: "ล้างหน้าไก่ Senior", court: "สนามกีฬา LPHPP" },
-      { item: 28, code: "C5", group: "C", stage: "group", week: "Week 7", day: "Sunday", date: "24 Jan 27", time: "20.30 - 21.20", home: "ANDRITZ family", away: "Process X Friend", court: "สนามกีฬา LPHPP" },
+      { item: 28, code: "A7", group: "A", stage: "group", week: "Week 7", day: "Sunday", date: "24 Jan 27", time: "20.30 - 21.20", home: "สังเคราะห์แสง (SA2)", away: "Powerhouse", court: "สนามกีฬา LPHPP" },
 
-      // Week 8 - Sunday 31 Jan 27
-      { item: 29, code: "D5", group: "D", stage: "group", week: "Week 8", day: "Sunday", date: "31 Jan 27", time: "17.30 - 18.20", home: "เสือหมอบ", away: "Engineering FC", court: "สนามกีฬา LPHPP" },
-      { item: 30, code: "A8", group: "A", stage: "group", week: "Week 8", day: "Sunday", date: "31 Jan 27", time: "18.30 - 19.20", home: "เด็กจเร", away: "สันเขื่อน FC", court: "สนามกีฬา LPHPP" },
+      // Week 8 - Sunday 31 Jan 27 (Rev.04 Swapped Items 29 and 30)
+      { item: 29, code: "A8", group: "A", stage: "group", week: "Week 8", day: "Sunday", date: "31 Jan 27", time: "17.30 - 18.20", home: "เด็กจเร", away: "สันเขื่อน FC", court: "สนามกีฬา LPHPP" },
+      { item: 30, code: "D5", group: "D", stage: "group", week: "Week 8", day: "Sunday", date: "31 Jan 27", time: "18.30 - 19.20", home: "เสือหมอบ", away: "Engineering FC", court: "สนามกีฬา LPHPP" },
       { item: 31, code: "อาวุโส8", group: "อาวุโส", stage: "group", week: "Week 8", day: "Sunday", date: "31 Jan 27", time: "19.30 - 20.20", home: "โก๋แก่", away: "SOLID TEAM", court: "สนามกีฬา LPHPP" },
       { item: 32, code: "A9", group: "A", stage: "group", week: "Week 8", day: "Sunday", date: "31 Jan 27", time: "20.30 - 21.20", home: "Camp Boss FC", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
 
-      // Week 9 - Sunday 07 Feb 27
-      { item: 33, code: "A10", group: "A", stage: "group", week: "Week 9", day: "Sunday", date: "07 Feb 27", time: "17.30 - 18.20", home: "สังเคราะห์แสง (SA2)", away: "เด็กจเร", court: "สนามกีฬา LPHPP" },
-      { item: 34, code: "B6", group: "B", stage: "group", week: "Week 9", day: "Sunday", date: "07 Feb 27", time: "18.30 - 19.20", home: "RT & VCB FC", away: "ANDRITZ", court: "สนามกีฬา LPHPP" },
+      // Week 9 - Sunday 07 Feb 27 (Rev.04 Swapped Items 33 and 34)
+      { item: 33, code: "B6", group: "B", stage: "group", week: "Week 9", day: "Sunday", date: "07 Feb 27", time: "17.30 - 18.20", home: "RT & VCB FC", away: "ANDRITZ", court: "สนามกีฬา LPHPP" },
+      { item: 34, code: "A10", group: "A", stage: "group", week: "Week 9", day: "Sunday", date: "07 Feb 27", time: "18.30 - 19.20", home: "สังเคราะห์แสง (SA2)", away: "เด็กจเร", court: "สนามกีฬา LPHPP" },
       { item: 35, code: "อาวุโส9", group: "อาวุโส", stage: "group", week: "Week 9", day: "Sunday", date: "07 Feb 27", time: "19.30 - 20.20", home: "VCB อาวุโสโอเค", away: "Senior Process", court: "สนามกีฬา LPHPP" },
       { item: 36, code: "C6", group: "C", stage: "group", week: "Week 9", day: "Sunday", date: "07 Feb 27", time: "20.30 - 21.20", home: "บักหล้าครับ", away: "ล้างหน้าไก่ Junior", court: "สนามกีฬา LPHPP" },
 
       // Week 10 - Sunday 14 Feb 27
       { item: 37, code: "D6", group: "D", stage: "group", week: "Week 10", day: "Sunday", date: "14 Feb 27", time: "17.30 - 18.20", home: "QC & Lab", away: "Inspector", court: "สนามกีฬา LPHPP" },
       { item: 38, code: "A11", group: "A", stage: "group", week: "Week 10", day: "Sunday", date: "14 Feb 27", time: "18.30 - 19.20", home: "Camp Boss FC", away: "Powerhouse", court: "สนามกีฬา LPHPP" },
-      { item: 39, code: "อาวุโส10", group: "อาวุโส", stage: "group", week: "Week 10", day: "Sunday", date: "14 Feb 27", time: "19.30 - 20.20", home: "SIMPLE MAN UNITED", away: "SOLID TEAM", court: "สนามกีฬา LPHPP" },
+      { item: 39, time: "19.30 - 20.20", code: "อาวุโส10", group: "อาวุโส", stage: "group", week: "Week 10", day: "Sunday", date: "14 Feb 27", time: "19.30 - 20.20", home: "SIMPLE MAN UNITED", away: "SOLID TEAM", court: "สนามกีฬา LPHPP" },
       { item: 40, code: "B7", group: "B", stage: "group", week: "Week 10", day: "Sunday", date: "14 Feb 27", time: "20.30 - 21.20", home: "RT PPSC United", away: "All Star E&M", court: "สนามกีฬา LPHPP" },
 
-      // Week 11 - Sunday 21 Feb 27
-      { item: 41, code: "C7", group: "C", stage: "group", week: "Week 11", day: "Sunday", date: "21 Feb 27", time: "17.30 - 18.20", home: "ลุงนา", away: "ANDRITZ family", court: "สนามกีฬา LPHPP" },
-      { item: 42, code: "D7", group: "D", stage: "group", week: "Week 11", day: "Sunday", date: "21 Feb 27", time: "18.30 - 19.20", home: "SEUA TUNG FC", away: "เสือหมอบ", court: "สนามกีฬา LPHPP" },
+      // Week 11 - Sunday 21 Feb 27 (Rev.04 Swapped Items 41, 42, 44)
+      { item: 41, code: "D7", group: "D", stage: "group", week: "Week 11", day: "Sunday", date: "21 Feb 27", time: "17.30 - 18.20", home: "SEUA TUNG FC", away: "เสือหมอบ", court: "สนามกีฬา LPHPP" },
+      { item: 42, code: "A12", group: "A", stage: "group", week: "Week 11", day: "Sunday", date: "21 Feb 27", time: "18.30 - 19.20", home: "สังเคราะห์แสง (SA2)", away: "สันเขื่อน FC", court: "สนามกีฬา LPHPP" },
       { item: 43, code: "อาวุโส11", group: "อาวุโส", stage: "group", week: "Week 11", day: "Sunday", date: "21 Feb 27", time: "19.30 - 20.20", home: "ล้างหน้าไก่ Senior", away: "Senior Process", court: "สนามกีฬา LPHPP" },
-      { item: 44, code: "A12", group: "A", stage: "group", week: "Week 11", day: "Sunday", date: "21 Feb 27", time: "20.30 - 21.20", home: "สังเคราะห์แสง (SA2)", away: "สันเขื่อน FC", court: "สนามกีฬา LPHPP" },
+      { item: 44, code: "C7", group: "C", stage: "group", week: "Week 11", day: "Sunday", date: "21 Feb 27", time: "20.30 - 21.20", home: "ลุงนา", away: "ANDRITZ family", court: "สนามกีฬา LPHPP" },
 
-      // Week 12 - Sunday 28 Feb 27
-      { item: 45, code: "B8", group: "B", stage: "group", week: "Week 12", day: "Sunday", date: "28 Feb 27", time: "17.30 - 18.20", home: "Fuel 888", away: "ANDRITZ", court: "สนามกีฬา LPHPP" },
-      { item: 46, code: "C8", group: "C", stage: "group", week: "Week 12", day: "Sunday", date: "28 Feb 27", time: "18.30 - 19.20", home: "Process X Friend", away: "ล้างหน้าไก่ Junior", court: "สนามกีฬา LPHPP" },
+      // Week 12 - Sunday 28 Feb 27 (Rev.04 Swapped Items 45, 46, 48)
+      { item: 45, code: "C8", group: "C", stage: "group", week: "Week 12", day: "Sunday", date: "28 Feb 27", time: "17.30 - 18.20", home: "Process X Friend", away: "ล้างหน้าไก่ Junior", court: "สนามกีฬา LPHPP" },
+      { item: 46, code: "D8", group: "D", stage: "group", week: "Week 12", day: "Sunday", date: "28 Feb 27", time: "18.30 - 19.20", home: "Engineering FC", away: "Inspector", court: "สนามกีฬา LPHPP" },
       { item: 47, code: "อาวุโส12", group: "อาวุโส", stage: "group", week: "Week 12", day: "Sunday", date: "28 Feb 27", time: "19.30 - 20.20", home: "โก๋แก่", away: "VCB อาวุโสโอเค", court: "สนามกีฬา LPHPP" },
-      { item: 48, code: "D8", group: "D", stage: "group", week: "Week 12", day: "Sunday", date: "28 Feb 27", time: "20.30 - 21.20", home: "Engineering FC", away: "Inspector", court: "สนามกีฬา LPHPP" },
+      { item: 48, code: "B8", group: "B", stage: "group", week: "Week 12", day: "Sunday", date: "28 Feb 27", time: "20.30 - 21.20", home: "Fuel 888", away: "ANDRITZ", court: "สนามกีฬา LPHPP" },
 
-      // Week 13 - Sunday 07 Mar 27
-      { item: 49, code: "A13", group: "A", stage: "group", week: "Week 13", day: "Sunday", date: "07 Mar 27", time: "17.30 - 18.20", home: "เด็กจเร", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
-      { item: 50, code: "B9", group: "B", stage: "group", week: "Week 13", day: "Sunday", date: "07 Mar 27", time: "18.30 - 19.20", home: "RT & VCB FC", away: "All Star E&M", court: "สนามกีฬา LPHPP" },
+      // Week 13 - Sunday 07 Mar 27 (Rev.04 Swapped Items 49, 50, 52)
+      { item: 49, code: "B9", group: "B", stage: "group", week: "Week 13", day: "Sunday", date: "07 Mar 27", time: "17.30 - 18.20", home: "RT & VCB FC", away: "All Star E&M", court: "สนามกีฬา LPHPP" },
+      { item: 50, code: "C9", group: "C", stage: "group", week: "Week 13", day: "Sunday", date: "07 Mar 27", time: "18.30 - 19.20", home: "บักหล้าครับ", away: "ANDRITZ family", court: "สนามกีฬา LPHPP" },
       { item: 51, code: "อาวุโส13", group: "อาวุโส", stage: "group", week: "Week 13", day: "Sunday", date: "07 Mar 27", time: "19.30 - 20.20", home: "SIMPLE MAN UNITED", away: "Senior Process", court: "สนามกีฬา LPHPP" },
-      { item: 52, code: "C9", group: "C", stage: "group", week: "Week 13", day: "Sunday", date: "07 Mar 27", time: "20.30 - 21.20", home: "บักหล้าครับ", away: "ANDRITZ family", court: "สนามกีฬา LPHPP" },
+      { item: 52, code: "A13", group: "A", stage: "group", week: "Week 13", day: "Sunday", date: "07 Mar 27", time: "20.30 - 21.20", home: "เด็กจเร", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
 
       // Week 14 - Monday 08 Mar 27
       { item: 53, code: "หญิง1", group: "หญิง", stage: "group", week: "Week 14", day: "Monday", date: "08 Mar 27", time: "17.30 - 18.20", home: "singha sao fc", away: "Lady Process FC", court: "สนามกีฬา LPHPP" },
@@ -1025,37 +1024,37 @@
       { item: 55, code: "หญิง2", group: "หญิง", stage: "group", week: "Week 14", day: "Monday", date: "08 Mar 27", time: "19.30 - 20.20", home: "ธิดาสนาม", away: "ล้างหน้าไก่ Lady (SA2)", court: "สนามกีฬา LPHPP" },
       { item: 56, code: "อาวุโส15", group: "อาวุโส", stage: "group", week: "Week 14", day: "Monday", date: "08 Mar 27", time: "20.30 - 21.20", home: "ล้างหน้าไก่ Senior", away: "โก๋แก่", court: "สนามกีฬา LPHPP" },
 
-      // Week 15 - Sunday 14 Mar 27
-      { item: 57, code: "D9", group: "D", stage: "group", week: "Week 15", day: "Sunday", date: "14 Mar 27", time: "17.30 - 18.20", home: "QC & Lab", away: "เสือหมอบ", court: "สนามกีฬา LPHPP" },
-      { item: 58, code: "A14", group: "A", stage: "group", week: "Week 15", day: "Sunday", date: "14 Mar 27", time: "18.30 - 19.20", home: "Camp Boss FC", away: "สันเขื่อน FC", court: "สนามกีฬา LPHPP" },
+      // Week 15 - Sunday 14 Mar 27 (Rev.04 Swapped Items 57, 58, 60)
+      { item: 57, code: "A14", group: "A", stage: "group", week: "Week 15", day: "Sunday", date: "14 Mar 27", time: "17.30 - 18.20", home: "Camp Boss FC", away: "สันเขื่อน FC", court: "สนามกีฬา LPHPP" },
+      { item: 58, code: "B10", group: "B", stage: "group", week: "Week 15", day: "Sunday", date: "14 Mar 27", time: "18.30 - 19.20", home: "RT PPSC United", away: "Fuel 888", court: "สนามกีฬา LPHPP" },
       { item: 59, code: "หญิง3", group: "หญิง", stage: "group", week: "Week 15", day: "Sunday", date: "14 Mar 27", time: "19.30 - 20.20", home: "singha sao fc", away: "ธิดาสนาม", court: "สนามกีฬา LPHPP" },
-      { item: 60, code: "B10", group: "B", stage: "group", week: "Week 15", day: "Sunday", date: "14 Mar 27", time: "20.30 - 21.20", home: "RT PPSC United", away: "Fuel 888", court: "สนามกีฬา LPHPP" },
+      { item: 60, code: "D9", group: "D", stage: "group", week: "Week 15", day: "Sunday", date: "14 Mar 27", time: "20.30 - 21.20", home: "QC & Lab", away: "เสือหมอบ", court: "สนามกีฬา LPHPP" },
 
-      // Week 16 - Sunday 21 Mar 27
-      { item: 61, code: "D10", group: "D", stage: "group", week: "Week 16", day: "Sunday", date: "21 Mar 27", time: "17.30 - 18.20", home: "SEUA TUNG FC", away: "Engineering FC", court: "สนามกีฬา LPHPP" },
+      // Week 16 - Sunday 21 Mar 27 (Rev.04 Swapped Items 61 and 64)
+      { item: 61, code: "A15", group: "A", stage: "group", week: "Week 16", day: "Sunday", date: "21 Mar 27", time: "17.30 - 18.20", home: "Powerhouse", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
       { item: 62, code: "C10", group: "C", stage: "group", week: "Week 16", day: "Sunday", date: "21 Mar 27", time: "18.30 - 19.20", home: "ลุงนา", away: "Process X Friend", court: "สนามกีฬา LPHPP" },
       { item: 63, code: "หญิง4", group: "หญิง", stage: "group", week: "Week 16", day: "Sunday", date: "21 Mar 27", time: "19.30 - 20.20", home: "Lady Process FC", away: "ล้างหน้าไก่ Lady (SA2)", court: "สนามกีฬา LPHPP" },
-      { item: 64, code: "A15", group: "A", stage: "group", week: "Week 16", day: "Sunday", date: "21 Mar 27", time: "20.30 - 21.20", home: "Powerhouse", away: "นกหัวม่วงมาเลย์", court: "สนามกีฬา LPHPP" },
+      { item: 64, code: "D10", group: "D", stage: "group", week: "Week 16", day: "Sunday", date: "21 Mar 27", time: "20.30 - 21.20", home: "SEUA TUNG FC", away: "Engineering FC", court: "สนามกีฬา LPHPP" },
 
       // Week 17 (Women Group Final Matches) - Sunday 28 Mar 27
       { item: 65, code: "หญิง5", group: "หญิง", stage: "group", week: "Week 17", day: "Sunday", date: "28 Mar 27", time: "17.30 - 18.20", home: "Lady Process FC", away: "ธิดาสนาม", court: "สนามกีฬา LPHPP" },
       { item: 66, code: "หญิง6", group: "หญิง", stage: "group", week: "Week 17", day: "Sunday", date: "28 Mar 27", time: "18.30 - 19.20", home: "singha sao fc", away: "ล้างหน้าไก่ Lady (SA2)", court: "สนามกีฬา LPHPP" },
 
-      // Quarter-finals (รอบ 8 ทีม ชาย) - Sunday 04 Apr 27
+      // Quarter-finals (รอบ 8 ทีม / รอบก่อนรองชนะเลิศ ชาย) - Sunday 04 Apr 27
       { item: 67, code: "QF-A", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "04 Apr 27", time: "17.30 - 18.20", home: "รอผลจับสลาก (QF-A1)", away: "รอผลจับสลาก (QF-A2)", court: "สนามกีฬา LPHPP" },
       { item: 68, code: "QF-B", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "04 Apr 27", time: "18.30 - 19.20", home: "รอผลจับสลาก (QF-B1)", away: "รอผลจับสลาก (QF-B2)", court: "สนามกีฬา LPHPP" },
-      { item: 69, code: "QF-C", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "04 Apr 27", time: "20.30 - 21.20", home: "รอผลจับสลาก (QF-C1)", away: "รอผลจับสลาก (QF-C2)", court: "สนามกีฬา LPHPP" },
+      { item: 69, code: "QF-C", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "20.30 - 21.20", home: "รอผลจับสลาก (QF-C1)", away: "รอผลจับสลาก (QF-C2)", court: "สนามกีฬา LPHPP" },
       { item: 70, code: "QF-D", group: "QF", stage: "qf", week: "Week 17 (QF)", day: "Sunday", date: "04 Apr 27", time: "17.30 - 18.20", home: "รอผลจับสลาก (QF-D1)", away: "รอผลจับสลาก (QF-D2)", court: "สนามกีฬา LPHPP" },
 
       // Semi-finals (รอบรองชนะเลิศชาย) - Sunday 25 Apr 27
       { item: 71, code: "SF-AB", group: "SF", stage: "sf", week: "Week 18 (SF)", day: "Sunday", date: "25 Apr 27", time: "17.30 - 18.20", home: "ผู้ชนะ QF-A", away: "ผู้ชนะ QF-B", court: "สนามกีฬา LPHPP" },
       { item: 72, code: "SF-CD", group: "SF", stage: "sf", week: "Week 18 (SF)", day: "Sunday", date: "25 Apr 27", time: "18.30 - 19.20", home: "ผู้ชนะ QF-C", away: "ผู้ชนะ QF-D", court: "สนามกีฬา LPHPP" },
 
-      // Finals (รอบชิงชนะเลิศ) - Sunday 01 May 27
-      { item: 73, code: "Final-หญิง", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Sunday", date: "01 May 27", time: "17.30 - 18.20", home: "ชิงชนะเลิศหญิง (อันดับ 1)", away: "ชิงชนะเลิศหญิง (อันดับ 2)", court: "สนามกีฬา LPHPP" },
-      { item: 74, code: "3rd-ชาย", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Sunday", date: "01 May 27", time: "18.30 - 19.20", home: "ชิงที่ 3 ชาย (แพ้รอบรอง 1)", away: "ชิงที่ 3 ชาย (แพ้รอบรอง 2)", court: "สนามกีฬา LPHPP" },
-      { item: 75, code: "Final-อาวุโส", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Sunday", date: "01 May 27", time: "19.30 - 20.20", home: "ชิงชนะเลิศอาวุโส (อันดับ 1)", away: "ชิงชนะเลิศอาวุโส (อันดับ 2)", court: "สนามกีฬา LPHPP" },
-      { item: 76, code: "Final-ชาย", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Sunday", date: "01 May 27", time: "20.30 - 21.20", home: "ชิงชนะเลิศชาย (ชนะรอบรอง 1)", away: "ชิงชนะเลิศชาย (ชนะรอบรอง 2)", court: "สนามกีฬา LPHPP" }
+      // Finals (รอบชิงชนะเลิศ) - Saturday 01 May 27 (Rev.04 Day changed to Saturday)
+      { item: 73, code: "Final-หญิง", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Saturday", date: "01 May 27", time: "17.30 - 18.20", home: "ชิงชนะเลิศหญิง (อันดับ 1)", away: "ชิงชนะเลิศหญิง (อันดับ 2)", court: "สนามกีฬา LPHPP" },
+      { item: 74, code: "3rd-ชาย", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Saturday", date: "01 May 27", time: "18.30 - 19.20", home: "ชิงที่ 3 ชาย (แพ้รอบรอง 1)", away: "ชิงที่ 3 ชาย (แพ้รอบรอง 2)", court: "สนามกีฬา LPHPP" },
+      { item: 75, code: "Final-อาวุโส", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Saturday", date: "01 May 27", time: "19.30 - 20.20", home: "ชิงชนะเลิศอาวุโส (อันดับ 1)", away: "ชิงชนะเลิศอาวุโส (อันดับ 2)", court: "สนามกีฬา LPHPP" },
+      { item: 76, code: "Final-ชาย", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Saturday", date: "01 May 27", time: "20.30 - 21.20", home: "ชิงชนะเลิศชาย (ชนะรอบรอง 1)", away: "ชิงชนะเลิศชาย (ชนะรอบรอง 2)", court: "สนามกีฬา LPHPP" }
     ];
 
     const OFFICIAL_MATCHES = storedMatches || INITIAL_OFFICIAL_MATCHES;
