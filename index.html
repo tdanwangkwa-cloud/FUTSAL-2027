@@ -1131,8 +1131,12 @@
           const cloudMatches = snapshot.val();
           if (cloudMatches && Array.isArray(cloudMatches) && cloudMatches.length === 76) {
             OFFICIAL_MATCHES.length = 0;
-            OFFICIAL_MATCHES.push(...cloudMatches);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudMatches));
+            const mergedCloud = INITIAL_OFFICIAL_MATCHES.map(orig => {
+              const found = cloudMatches.find(s => s.item === orig.item);
+              return found ? { ...orig, ...found, day: orig.day, date: orig.date, time: orig.time } : orig;
+            });
+            OFFICIAL_MATCHES.push(...mergedCloud);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(OFFICIAL_MATCHES));
             render();
           }
         });
