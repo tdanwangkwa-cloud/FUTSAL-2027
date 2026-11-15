@@ -1421,7 +1421,10 @@
     }
 
    function resetAllRealResults() {
-      if (confirm("คุณต้องการล้างผลการแข่งขันทั้งหมดและสถานะเป็น 'ยังไม่เริ่ม' ใช่หรือไม่?")) {
+      const confirmMsg = "⚠️ คำเตือนสำคัญ!\n\nคุณต้องการล้างข้อมูลทั้งหมดของระบบใช่หรือไม่?\n- ผลการแข่งขันและสกอร์ทั้งหมดจะถูกล้าง\n- ตารางคะแนนจะถูกรีเซ็ตเป็นเริ่มต้น\n- รายชื่อผู้ทำประตูสูงสุดและจำนวนประตูทั้งหมดจะถูกลบ";
+      
+      if (confirm(confirmMsg)) {
+        // 1. รีเซ็ตผลการแข่งขันและข้อมูลแมตช์ทั้งหมด 76 คู่ให้ตรงกับค่าเริ่มต้นล่าสุด
         OFFICIAL_MATCHES.forEach(m => {
           m.userScore = null;
           m.userState = "upcoming";
@@ -1429,19 +1432,34 @@
           if (orig) {
             m.home = orig.home;
             m.away = orig.away;
-            m.week = orig.week;   // อัปเดตชื่อสัปดาห์ใหม่ (Week 18, 19, 20)
-            m.day = orig.day;     // อัปเดตวันใหม่ (Saturday)
-            m.date = orig.date;   // อัปเดตวันที่
-            m.time = orig.time;   // อัปเดตเวลา
+            m.week = orig.week;
+            m.day = orig.day;
+            m.date = orig.date;
+            m.time = orig.time;
+            m.court = orig.court;
           }
         });
+
+        // 2. ล้างรายชื่อผู้ทำประตูสูงสุดและจำนวนประตูทั้งหมด
+        topScorersList = [];
+
+        // 3. บันทึกข้อมูลที่ถูกล้างลงใน Local Storage ของเบราว์เซอร์
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(OFFICIAL_MATCHES));
+          localStorage.setItem(SCORERS_STORAGE_KEY, JSON.stringify([]));
+
+          // 4. ซิงค์ล้างข้อมูลบน Firebase Cloud ทันที (ถ้ามีการเชื่อมต่ออยู่)
           if (firebaseDB) {
             firebaseDB.ref("matches").set(OFFICIAL_MATCHES);
+            firebaseDB.ref("scorers").set([]);
           }
-        } catch (e) {}
+        } catch (e) {
+          console.error("Error saving reset data:", e);
+        }
+
+        // 5. เรนเดอร์หน้าจอใหม่ทันที
         render();
+        alert("✅ ล้างผลการแข่งขัน ตารางคะแนน และรายชื่อผู้ทำประตูสูงสุดทั้งหมดเรียบร้อยแล้ว");
       }
     }
 
