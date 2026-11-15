@@ -1057,7 +1057,24 @@
       { item: 76, code: "Final-ชาย", group: "Final", stage: "final", week: "Week 19 (Finals)", day: "Saturday", date: "01 May 27", time: "20.30 - 21.20", home: "ชิงชนะเลิศชาย (ชนะรอบรอง 1)", away: "ชิงชนะเลิศชาย (ชนะรอบรอง 2)", court: "สนามกีฬา LPHPP" }
     ];
 
-    const OFFICIAL_MATCHES = storedMatches || INITIAL_OFFICIAL_MATCHES;
+   // ปรับระบบผสานข้อมูล: ดึงวัน (Saturday), เวลา และสนามจากโค้ดล่าสุดเสมอ โดยยังคงผลคะแนนที่เคยกรอกไว้
+    const OFFICIAL_MATCHES = INITIAL_OFFICIAL_MATCHES.map
+      (orig => {
+                 if (storedMatches && Array.isArray(storedMatches)) {
+                    const found = storedMatches.find(s => s.item === orig.item);
+                    if (found) {
+                        return {
+                           ...orig, // การันตีว่า day จะเป็น "Saturday" และเวลาจะเป็นของ Rev.04 ล่าสุดเสมอ
+                           home: (orig.stage !== "group" && found.home) ? found.home : orig.home,
+                           away: (orig.stage !== "group" && found.away) ? found.away : orig.away,
+                           userScore: found.userScore !== undefined ? found.userScore : null,
+                           userState: found.userState || "upcoming"
+                        };
+                     }
+                  }
+       return { ...orig };
+       }
+       );
 
     // การจัดเรียงลำดับทีมเริ่มต้นอ้างอิงตรงจากเอกสารทางการ
     const GROUPS_CONFIG = [
