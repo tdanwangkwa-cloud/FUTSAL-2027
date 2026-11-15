@@ -809,27 +809,25 @@
       margin-top: var(--space-4);
     }
 
-    .passcode-box {
+       .passcode-box {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       align-items: center;
-      background: var(--bg-elevated);
-      padding: var(--space-2) var(--space-3);
+      background: rgba(15, 23, 42, 0.45);
+      padding: 4px 6px;
       border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      margin-top: 10px;
-      flex-wrap: wrap;
+      border: 1px solid rgba(255, 255, 255, 0.22);
     }
 
     .passcode-input {
       font: inherit;
-      font-size: 18px;
-      padding: 6px 12px;
+      font-size: 14px;
+      padding: 5px 8px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--bg-elevated);
       color: var(--ink);
-      width: 160px;
+      width: 110px;
     }
 
     /* Scorer Manager Styles */
@@ -2012,7 +2010,17 @@
                 <p class="brand-subtitle">${t.subtitle}</p>
               </div>
             </div>
-            <div class="header-actions">
+                        <div class="header-actions">
+              ${state.adminMode ? `
+                <button class="ctrl-btn admin-badge" onclick="handleAdminLogout()">
+                  <span>Logout Admin</span>
+                </button>
+              ` : `
+                <div class="passcode-box">
+                  <input type="password" class="passcode-input" placeholder="Passcode" value="${state.adminPinInput}" oninput="state.adminPinInput=this.value;" onkeydown="if(event.key==='Enter') handleAdminPinSubmit();" />
+                  <button class="ctrl-btn" style="padding:4px 8px; font-size:12px;" onclick="handleAdminPinSubmit()">Login</button>
+                </div>
+              `}
               <button class="ctrl-btn" onclick="toggleLang()">
                 ${Icons.globe}
                 <span>${state.lang === "th" ? "TH / EN" : "EN / TH"}</span>
@@ -2021,12 +2029,8 @@
                 ${state.theme === "dark" ? Icons.sun : Icons.moon}
                 <span>${state.theme === "dark" ? "Light" : "Dark"}</span>
               </button>
-              ${state.adminMode ? `
-                <button class="ctrl-btn admin-badge" onclick="handleAdminLogout()">
-                  <span>Logout Admin</span>
-                </button>
-              ` : ''}
             </div>
+
           </div>
         </header>
 
@@ -2037,18 +2041,12 @@
               — ${state.adminMode ? t.modeNoticeOfficial : 'ข้อมูลแบบสดเรียลไทม์ตามความคืบหน้าของงาน'}
               ${fbBadgeHtml}
             </span>
-            
-            ${state.adminMode ? `
+               ${state.adminMode ? `
               <button class="ctrl-btn admin-badge" onclick="resetAllRealResults()" style="font-size:12px; padding: 4px 10px;">
                 ${t.resetMatchesBtn}
               </button>
-            ` : `
-              <div class="passcode-box">
-                <span style="font-size:12px; color:var(--muted);">สำหรับผู้ดูแลระบบ กรอกรหัสเพื่อแก้ไขผลแข่ง:</span>
-                <input type="password" class="passcode-input" placeholder="Passcode" value="${state.adminPinInput}" oninput="state.adminPinInput=this.value;" />
-                <button class="ctrl-btn" style="padding:2px 8px; font-size:11px;" onclick="handleAdminPinSubmit()">Login</button>
-              </div>
-            `}
+            ` : ''}
+            
           </div>
 
           <div class="top-controls-grid">
