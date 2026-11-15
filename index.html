@@ -904,6 +904,20 @@
       background: rgba(34, 197, 94, 0.15);
       color: #22c55e;
     }
+        /* Slow Blinking Animation for Real-time Live Score in Standings table */
+    @keyframes slowBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+    
+    .live-score-blink {
+      color: #ef4444;
+      font-weight: 800;
+      margin-left: 8px;
+      animation: slowBlink 2s infinite;
+      display: inline-block;
+    }
+
   </style>
 </head>
 <body>
@@ -1710,10 +1724,24 @@
                   ${rows.map((r, idx) => {
                     const isQualify = idx < cfg.qualifyCount;
                     const highlightTeam = q && r.team.toLowerCase().includes(q);
+
+                    // Live Blinking Score calculation
+                    const liveMatch = OFFICIAL_MATCHES.find(m =>
+                      m.userState === "live" && m.userScore &&
+                      (m.home === r.team || m.away === r.team)
+                    );
+                    let liveScoreHtml = "";
+                    if (liveMatch) {
+                      const [h, a] = liveMatch.userScore;
+                      liveScoreHtml = `<span class="live-score-blink">(${h}-${a})</span>`;
+                    }
+
                     return `
                       <tr class="${isQualify ? 'qualify-row' : ''}" style="${highlightTeam ? 'outline: 2px solid var(--brand-yellow);' : ''}">
                         <td><span class="rank-num">${idx + 1}</span></td>
-                        <td style="font-weight:700;">${r.team}</td>
+                        <td style="font-weight:700;">
+                          ${r.team}${liveScoreHtml}
+                        </td>
                         <td>${r.p}</td>
                         <td>${r.w}</td>
                         <td>${r.d}</td>
